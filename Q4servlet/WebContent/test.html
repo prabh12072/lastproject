@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	
+body{
+  font-family: "Arial", Helvetica, sans-serif;
+  position: relative;
+}
+
+#container{
+  text-align: center;
+  position: relative;
+  height: 100%;
+}
+
+#movies_booked, #form{
+  display: inline-block;
+  width: 40%;
+  height: 100%;
+  margin: 0 auto;
+  vertical-align:text-top;
+}
+
+fieldset, #movies_booked{
+  border:1px solid #AED0EA;
+  border-radius:8px;
+  box-shadow:0 0 10px #D7EBF9;
+}
+
+legend, #disount_title{
+  color: #2779AA;
+  font-size: 120%;
+  text-align: center;
+  background-color: white;
+}
+
+p{
+  overflow: hidden;
+}
+
+label{
+  width: 50%;
+  text-align: right;
+  float: left;
+  clear: both;
+  color: #2779AA;
+}
+
+p input, p select{
+  width: 40%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  margin-left: 5%;
+  margin-right: 5%;
+  color: #2779AA;
+}
+
+#theaters, #total_price, #movies_list, li, #perTicketPrice, #note{
+  color: #2779AA;
+}
+
+p span, li{
+  text-align: left;
+}
+
+#submit_wrapper{
+  text-align: center;
+}
+
+#submit{
+  font-size: 13px;
+}
+
+#discount, #perTicketPrice{
+  text-align: left;
+}
+
+#dateNote{
+  font-size: 9px;
+}
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+	<script src="test.js"></script>
+</head>
+<body>
+ <h3>  <img src="16.png">Newgen Library Management System </h3>
+ <br>
+ <center><h3>Enter The Details</h3></center>
+<div id="container">
+  <div id="form">
+    <form id="book_tickets">
+      <fieldset>
+        <legend>Library Management System</legend>
+
+        <p>
+          <label for="movie_name">Title</label>
+          <select id="movie_name" name="movie_name" required autofocus>
+            <option></option>
+            <option value="The Curious Incident Of The Dog In The Night Time">The Curious Incident Of The Dog In The Night Time</option>
+            <option value="The Unbearable Lightness Of Being">The Unbearable Lightness Of Being</option>
+            <option value="The Grapes Of Wrath">"The Grapes Of Wrath</option>
+            <option value="A Confederacy Of Dunces">A Confederacy Of Dunces</option>
+            <option value="The Grapes Of Wrath">The Grapes Of Wrath</option>
+            <option value="For Whom The Bell Tolls">For Whom The Bell Tolls</option>
+            <option value="No Country For Old Men">No Country For Old Men</option>
+            <option value="All Passion Spent">All Passion Spent</option>
+             <option value="An Evil Cradling">An Evil Cradling</option>
+            
+          </select>
+        </p>
+
+        <p>
+          <label for="theaters">Category</label>
+          <select id="theaters" required>
+            <option></option>
+            <option value="Theater 1">Student</option>
+            <option value="Theater 2">Teacher/Administration</option>
+            <!-- <option value="Theater 3">Theater 3</option> -->
+          </select>
+        </p>
+
+        <p>
+          <label for="date">Issue Date<br/><span id="dateNote">Firefox does not have a HTML5 datepicker <a href="https://support.mozilla.org/en-US/questions/986096">yet</a>.</span></label>
+          <input type="date" name="date" id="date" min="today" required />
+        </p>
+
+        <p>
+          <label for="email">Rollno</label>
+          <input type="Text" name="email" id="email" required />
+        </p>
+
+        <p>
+          <label for="tickets_quantity"># No of books</label>
+          <input type="number" min="1" name="tickets_quantity" id="tickets_quantity" required />
+        </p>
+
+       <!--  <p>
+          <label>Total Price</label>
+          <span id="total_price">(enter data first)</span>
+        </p> -->
+        <div id="submit_wrapper">
+          <input type="submit" id="submit" value="Issue Book" />
+        </div>
+      </fieldset>
+    </form>
+    <p id="perTicketPrice">Fine after Due Date = &#x20b9; 2</p>
+    <p id="discount">
+    
+    </p>
+</div>
+
+<fieldset id="movies_booked">
+  <legend>Books Issues Till Date</legend>
+  <span id="movies_list"></span>
+</fieldset>		    	
+
+</div>
+
+
+<script id="worker" type="javascript/worker">
+        self.onmessage = function msgWorkerHandler(event){
+            var jsonString = event.data;
+
+            var day = jsonString.day;
+            var number_booked_shows = jsonString.number_booked_shows;
+            var tickets_quantity = jsonString.tickets_quantity;
+
+            // set price of each ticket as Rs. 100
+           /* var totalPrice = tickets_quantity * 100;
+
+            // 5% discount if on weekday
+            if(day > 0 && day < 6){
+                totalPrice = totalPrice - 0.05 * totalPrice;
+            }
+
+            // 10% discount if number of booked shows >= 10
+            if(number_booked_shows >= 10){
+                totalPrice = totalPrice - 0.10 * totalPrice;
+            }*/
+
+           /*	postMessage("&#x20b9; " + totalPrice);*/
+        }
+</script>
+</body>
+</html>
